@@ -14,3 +14,9 @@ class TextBoxPageLocators:
     CREATED_PERMANENT_ADDRESS = (By.CSS_SELECTOR,'#output #permanentAddress')
 
 
+class CheckBoxPageLocators:
+    
+    OPEN_SWITCHER = (By.CSS_SELECTOR,"span[class='rc-tree-switcher rc-tree-switcher_close']")
+    CLOSED_SWITCHER = (By.CSS_SELECTOR,"span[class='rc-tree-switcher rc-tree-switcher_open']")
+    ITEM_LIST = (By.CSS_SELECTOR,"span[class='rc-tree-checkbox']")
+    ARIA_CHECKED = (By.CSS_SELECTOR,"span[aria-checked='true']")
