@@ -11,7 +11,7 @@ class TestElements:
             
             output_data = text_box_page.check_filled_form()
 
-            assert input_data == output_data
+            assert input_data == output_data, "Incorrect data in textBox inputs"
 
     class TestCheckBox:
 
@@ -21,3 +21,9 @@ class TestElements:
 
             check_box_page.open_full_list()
             check_box_page.click_random_checkbox()
+
+            input_data = check_box_page.get_checked_checkboxes()
+
+            output_data = check_box_page.get_output_result()
+
+            assert input_data == output_data, "The checkboxes have not been checked"

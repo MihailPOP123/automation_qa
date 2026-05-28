@@ -58,11 +58,26 @@ class CheckBoxPage(BasePage):
 
         for item in item_list:
             
-            print(item.get_attribute("aria-label").replace('Select ',''))
+            # print(item.get_attribute("aria-label").replace('Select ',''))
             item.click()
 
                
     def get_checked_checkboxes(self):
         checked_list = self.element_are_present(self.locators.ARIA_CHECKED)
-
+        data = []
+       
+        for box in checked_list:
+            data.append(box.get_attribute("aria-label").replace('Select ',''))
+            
+        return str(sorted(data)).replace(' ','').replace('.doc','').lower()
     
+    def get_output_result(self):
+        result_list =  self.element_are_present(self.locators.OUTPUT_RESULT)
+        result_data = []
+        
+        for item in result_list:
+            result_data.append(item.text)
+            
+        return str(sorted(result_data)).replace(' ','').lower()
+
+
