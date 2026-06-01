@@ -21,4 +21,9 @@ class CheckBoxPageLocators:
     ITEM_LIST = (By.CSS_SELECTOR,"span[class='rc-tree-checkbox']")
     ARIA_CHECKED = (By.CSS_SELECTOR,"span[aria-checked='true']")
     OUTPUT_RESULT = (By.CSS_SELECTOR,"span[class='text-success']")
+
+class RadioButtonLocators:
+    
+    CHECK_LABEL = (By.CSS_SELECTOR,"label[class='form-check-label']")
+    OUTPUT_SELECTED = (By.CSS_SELECTOR,"span[class='text-success']")
     

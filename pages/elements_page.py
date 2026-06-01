@@ -1,4 +1,4 @@
-from locators.element_page_locators import TextBoxPageLocators,CheckBoxPageLocators
+from locators.element_page_locators import TextBoxPageLocators,CheckBoxPageLocators,RadioButtonLocators
 from pages.base_page import BasePage
 from generator.generator import generated_person
 from selenium.common.exceptions import TimeoutException
@@ -58,7 +58,6 @@ class CheckBoxPage(BasePage):
 
         for item in item_list:
             
-            # print(item.get_attribute("aria-label").replace('Select ',''))
             item.click()
 
                
@@ -81,3 +80,39 @@ class CheckBoxPage(BasePage):
         return str(sorted(result_data)).replace(' ','').lower()
 
 
+class RadioButtonPage(BasePage):
+
+    locators = RadioButtonLocators()
+
+    def click_all_radio_button(self):
+        item_list = self.element_are_present(self.locators.CHECK_LABEL)
+        print(item_list)
+        data_click = []
+        data_selected = []
+        for item in item_list:
+            item.click()
+            data_click.append(item.text)
+
+            selected_item = self.get_checked_radio_btn()
+            data_selected.append(selected_item)
+
+        return data_click,data_selected
+        
+    def click_random_radio_btn(self):
+        item_list = self.element_are_present(self.locators.CHECK_LABEL)
+
+        random_item = random.choice(item_list)
+
+        random_item.click()
+
+        return random_item.text
+
+        
+    def get_checked_radio_btn(self):
+
+        item_selected = self.element_is_present(self.locators.OUTPUT_SELECTED)
+
+        return item_selected.text
+
+
+        

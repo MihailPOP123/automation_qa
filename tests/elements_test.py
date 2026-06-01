@@ -1,4 +1,4 @@
-from pages.elements_page import TextBoxPage,CheckBoxPage
+from pages.elements_page import TextBoxPage,CheckBoxPage,RadioButtonPage
 import time
 class TestElements:
     class TestTextBox:
@@ -27,3 +27,19 @@ class TestElements:
             output_data = check_box_page.get_output_result()
 
             assert input_data == output_data, "The checkboxes have not been checked"
+        
+    class TestRadioButton:
+
+        def test_radio_btn(self,driver):
+            radio_btn_page =  RadioButtonPage(driver,'https://demoqa.com/radio-button')
+            radio_btn_page.open()
+
+            item = radio_btn_page.click_random_radio_btn()
+
+            item_result = radio_btn_page.get_checked_radio_btn()
+
+            assert item == item_result, "The random element does not match the selected one"
+            
+            click_item,selected_item = radio_btn_page.click_all_radio_button()
+            
+            assert click_item == selected_item, "Not all data matches the selection"
