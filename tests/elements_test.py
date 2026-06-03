@@ -43,3 +43,8 @@ class TestElements:
             click_item,selected_item = radio_btn_page.click_all_radio_button()
             
             assert click_item == selected_item, "Not all data matches the selection"
+
+            cheked_data = ['yes','impressive','no']
+            for i in cheked_data:
+                
+                assert radio_btn_page.click_on_the_radio_btn(i) == radio_btn_page.get_checked_radio_btn(),f'Page element {i} is not clickable'

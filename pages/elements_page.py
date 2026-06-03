@@ -85,8 +85,8 @@ class RadioButtonPage(BasePage):
     locators = RadioButtonLocators()
 
     def click_all_radio_button(self):
-        item_list = self.element_are_present(self.locators.CHECK_LABEL)
-        print(item_list)
+        item_list = self.element_are_visible(self.locators.CHECK_LABEL)
+        
         data_click = []
         data_selected = []
         for item in item_list:
@@ -97,9 +97,25 @@ class RadioButtonPage(BasePage):
             data_selected.append(selected_item)
 
         return data_click,data_selected
+    
+    def click_on_the_radio_btn(self,choice):
+
+        choices = {
+            'yes':self.locators.YES_RADIO_BTN,
+            'impressive':self.locators.IMPRESSIVE_RADIO_BTN,
+            'no':self.locators.NO_RADIO_BTN,
+        }
+
+        radio = self.element_is_visible(choices[choice])
+        
+        radio.click()
+
+        return radio.text
+
+
         
     def click_random_radio_btn(self):
-        item_list = self.element_are_present(self.locators.CHECK_LABEL)
+        item_list = self.element_are_visible(self.locators.CHECK_LABEL)
 
         random_item = random.choice(item_list)
 

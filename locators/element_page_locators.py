@@ -26,4 +26,7 @@ class RadioButtonLocators:
     
     CHECK_LABEL = (By.CSS_SELECTOR,"label[class='form-check-label']")
     OUTPUT_SELECTED = (By.CSS_SELECTOR,"span[class='text-success']")
-    
+
+    YES_RADIO_BTN = (By.CSS_SELECTOR,"label[for='yesRadio']")
+    IMPRESSIVE_RADIO_BTN = (By.CSS_SELECTOR,"label[for='impressiveRadio']")
+    NO_RADIO_BTN = (By.CSS_SELECTOR,"label[for='noRadio']")
