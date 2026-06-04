@@ -133,6 +133,8 @@ class RadioButtonPage(BasePage):
 class WebTablePage(BasePage):
     
     locators = WebTablePageLocators()
+
+    
     
 
         
