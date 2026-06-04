@@ -1,4 +1,4 @@
-from locators.element_page_locators import TextBoxPageLocators,CheckBoxPageLocators,RadioButtonLocators
+from locators.element_page_locators import TextBoxPageLocators,CheckBoxPageLocators,RadioButtonPageLocators,WebTablePageLocators
 from pages.base_page import BasePage
 from generator.generator import generated_person
 from selenium.common.exceptions import TimeoutException
@@ -82,7 +82,7 @@ class CheckBoxPage(BasePage):
 
 class RadioButtonPage(BasePage):
 
-    locators = RadioButtonLocators()
+    locators = RadioButtonPageLocators()
 
     def click_all_radio_button(self):
         item_list = self.element_are_visible(self.locators.CHECK_LABEL)
@@ -130,5 +130,9 @@ class RadioButtonPage(BasePage):
 
         return item_selected.text
 
+class WebTablePage(BasePage):
+    
+    locators = WebTablePageLocators()
+    
 
         

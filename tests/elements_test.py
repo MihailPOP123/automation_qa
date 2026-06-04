@@ -1,4 +1,4 @@
-from pages.elements_page import TextBoxPage,CheckBoxPage,RadioButtonPage
+from pages.elements_page import TextBoxPage,CheckBoxPage,RadioButtonPage,WebTablePage
 import time
 class TestElements:
     class TestTextBox:
@@ -48,3 +48,10 @@ class TestElements:
             for i in cheked_data:
                 
                 assert radio_btn_page.click_on_the_radio_btn(i) == radio_btn_page.get_checked_radio_btn(),f'Page element {i} is not clickable'
+
+    class TestWebTable:
+
+        def test_web_table_and_person(self,driver):
+
+            web_page = WebTablePage(driver,'https://demoqa.com/webtables')
+            web_page.open()
