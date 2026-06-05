@@ -1,6 +1,6 @@
 from locators.element_page_locators import TextBoxPageLocators,CheckBoxPageLocators,RadioButtonPageLocators,WebTablePageLocators
 from pages.base_page import BasePage
-from generator.generator import generated_person
+from generator.generator import generated_person,generated_registration_person
 from selenium.common.exceptions import TimeoutException
 
 import random
@@ -134,7 +134,39 @@ class WebTablePage(BasePage):
     
     locators = WebTablePageLocators()
 
+    def click_button_add(self):
+
+        self.element_is_clickable(self.locators.ADD_BUTTON).click()
+
+    def filling_out_registration_fields(self):
+        
+        person_info = next(generated_registration_person())
+
+        first_name=person_info.first_name
+        last_name=person_info.last_name
+        email=person_info.email
+        age=person_info.age
+        salary=person_info.salary
+        department=person_info.department
+
+        self.element_is_visible(self.locators.FIRSTNAME_INPUT).send_keys(first_name)
+        self.element_is_visible(self.locators.LASTNAME_INPUT).send_keys(last_name)
+        self.element_is_visible(self.locators.EMAIL_INPUT).send_keys(email)
+        self.element_is_visible(self.locators.AGE_INPUT).send_keys(str(age))
+        self.element_is_visible(self.locators.SALARY_INPUT).send_keys(str(salary))
+        self.element_is_visible(self.locators.DEPARTMENT_INPUT).send_keys(department)
+
+        return first_name,last_name,email,age,salary,department
     
-    
+    def submit_registration_form(self):
+
+        self.element_is_clickable(self.locators.SUBMIT_BUTTON).click()
+
+    def add_new_person_in_table(self):
+
+        self.click_button_add()
+        person_data = self.filling_out_registration_fields()
+        self.submit_registration_form()
+        return person_data
 
         

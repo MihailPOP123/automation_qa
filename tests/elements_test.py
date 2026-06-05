@@ -47,7 +47,7 @@ class TestElements:
             cheked_data = ['yes','impressive','no']
             for i in cheked_data:
                 
-                assert radio_btn_page.click_on_the_radio_btn(i) == radio_btn_page.get_checked_radio_btn(),f'Page element {i} is not clickable'
+                assert radio_btn_page.click_on_the_radio_btn(i) == radio_btn_page.get_checked_radio_btn(),f'Page element "{i}" is not clickable'
 
     class TestWebTable:
 
@@ -55,3 +55,5 @@ class TestElements:
 
             web_page = WebTablePage(driver,'https://demoqa.com/webtables')
             web_page.open()
+
+        
