@@ -31,7 +31,7 @@ class RadioButtonPageLocators:
     IMPRESSIVE_RADIO_BTN = (By.CSS_SELECTOR,"label[for='impressiveRadio']")
     NO_RADIO_BTN = (By.CSS_SELECTOR,"label[for='noRadio']")
 
-class WebTableLocators:
+class WebTablePageLocators:
     ADD_BUTTON = (By.CSS_SELECTOR,"button[id='addNewRecordButton']")
     FIRSTNAME_INPUT = (By.CSS_SELECTOR,"input[id='firstName']")
     LASTNAME_INPUT = (By.CSS_SELECTOR,"input[id='lastName']")
@@ -39,4 +39,4 @@ class WebTableLocators:
     AGE_INPUT = (By.CSS_SELECTOR,"input[id='age']")
     SALARY_INPUT = (By.CSS_SELECTOR,"input[id='salary']")
     DEPARTMENT_INPUT = (By.CSS_SELECTOR,"input[id='department']")
-    SUBMINT_BUTTON = (By.CSS_SELECTOR,"button[id='submit']")
+    SUBMIT_BUTTON = (By.CSS_SELECTOR,"button[id='submit']")
