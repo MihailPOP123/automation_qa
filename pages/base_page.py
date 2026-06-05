@@ -10,6 +10,9 @@ class BasePage:
     def open(self):
         self.driver.get(self.url)
 
+    def element_is_clickable(self,locator,timeout=5):
+        return WebDriverWait(self.driver,timeout).until(EC.element_to_be_clickable(locator))
+
     def element_is_visible(self,locator,timeout=5):
         return WebDriverWait(self.driver,timeout).until(EC.visibility_of_element_located(locator))
     
