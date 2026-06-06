@@ -1,6 +1,11 @@
-from locators.element_page_locators import TextBoxPageLocators,CheckBoxPageLocators,RadioButtonPageLocators,WebTablePageLocators
+from locators.element_page_locators import (
+    TextBoxPageLocators,
+    CheckBoxPageLocators,
+    RadioButtonPageLocators,
+    WebTablePageLocators,
+)
 from pages.base_page import BasePage
-from generator.generator import generated_person,generated_registration_person
+from generator.generator import generated_person, generated_registration_person
 from selenium.common.exceptions import TimeoutException
 
 import random
@@ -13,36 +18,43 @@ class TextBoxPage(BasePage):
     def fill_all_fields(self):
 
         person_info = next(generated_person())
-    
-        self.element_is_visible(self.locators.FULL_NAME).send_keys(person_info.full_name)
+
+        self.element_is_visible(self.locators.FULL_NAME).send_keys(
+            person_info.full_name
+        )
         self.element_is_visible(self.locators.EMAIL).send_keys(person_info.email)
-        self.element_is_visible(self.locators.CURRENT_ADDRESS).send_keys(person_info.current_address)
-        self.element_is_visible(self.locators.PERMANENT_ADDRESS).send_keys(person_info.permanent_address)
+        self.element_is_visible(self.locators.CURRENT_ADDRESS).send_keys(
+            person_info.current_address
+        )
+        self.element_is_visible(self.locators.PERMANENT_ADDRESS).send_keys(
+            person_info.permanent_address
+        )
         self.element_is_clickable(self.locators.SUBMIT).click()
 
         return (
             person_info.full_name,
             person_info.email,
             person_info.current_address,
-            person_info.permanent_address
+            person_info.permanent_address,
         )
 
     def check_filled_form(self):
-        full_name = self.element_is_present(self.locators.CREATED_FULL_NAME).text.split(":")[1]
+        full_name = self.element_is_present(self.locators.CREATED_FULL_NAME).text.split(
+            ":"
+        )[1]
         email = self.element_is_present(self.locators.CREATED_EMAIL).text.split(":")[1]
-        current_address = self.element_is_present(self.locators.CREATED_CURRENT_ADDRESS).text.split(":")[1]
-        permanent_address = self.element_is_present(self.locators.CREATED_PERMANENT_ADDRESS).text.split(":")[1]
-        
-        return (
-            full_name,
-            email,
-            current_address,
-            permanent_address
-        )
+        current_address = self.element_is_present(
+            self.locators.CREATED_CURRENT_ADDRESS
+        ).text.split(":")[1]
+        permanent_address = self.element_is_present(
+            self.locators.CREATED_PERMANENT_ADDRESS
+        ).text.split(":")[1]
+
+        return (full_name, email, current_address, permanent_address)
 
 
 class CheckBoxPage(BasePage):
-    
+
     locators = CheckBoxPageLocators()
 
     def open_full_list(self):
@@ -51,36 +63,36 @@ class CheckBoxPage(BasePage):
             try:
                 self.element_is_clickable(self.locators.OPEN_SWITCHER).click()
             except TimeoutException:
-                
+
                 break
 
     def click_random_checkbox(self):
 
         item_list = self.element_are_visible(self.locators.ITEM_LIST)
-        
+
         random.shuffle(item_list)
 
         for item in item_list:
-            
+
             item.click()
-       
+
     def get_checked_checkboxes(self):
         checked_list = self.element_are_present(self.locators.ARIA_CHECKED)
         data = []
-       
+
         for box in checked_list:
-            data.append(box.get_attribute("aria-label").replace('Select ',''))
-            
-        return str(sorted(data)).replace(' ','').replace('.doc','').lower()
-    
+            data.append(box.get_attribute("aria-label").replace("Select ", ""))
+
+        return str(sorted(data)).replace(" ", "").replace(".doc", "").lower()
+
     def get_output_result(self):
-        result_list =  self.element_are_present(self.locators.OUTPUT_RESULT)
+        result_list = self.element_are_present(self.locators.OUTPUT_RESULT)
         result_data = []
-        
+
         for item in result_list:
             result_data.append(item.text)
-            
-        return str(sorted(result_data)).replace(' ','').lower()
+
+        return str(sorted(result_data)).replace(" ", "").lower()
 
 
 class RadioButtonPage(BasePage):
@@ -89,7 +101,7 @@ class RadioButtonPage(BasePage):
 
     def click_all_radio_button(self):
         item_list = self.element_are_visible(self.locators.CHECK_LABEL)
-        
+
         data_click = []
         data_selected = []
         for item in item_list:
@@ -99,22 +111,21 @@ class RadioButtonPage(BasePage):
             selected_item = self.get_checked_radio_btn()
             data_selected.append(selected_item)
 
-        return data_click,data_selected
-    
-    def click_on_the_radio_btn(self,choice):
+        return data_click, data_selected
+
+    def click_on_the_radio_btn(self, choice):
 
         choices = {
-            'yes':self.locators.YES_RADIO_BTN,
-            'impressive':self.locators.IMPRESSIVE_RADIO_BTN,
-            'no':self.locators.NO_RADIO_BTN,
+            "yes": self.locators.YES_RADIO_BTN,
+            "impressive": self.locators.IMPRESSIVE_RADIO_BTN,
+            "no": self.locators.NO_RADIO_BTN,
         }
 
         radio = self.element_is_visible(choices[choice])
-        
+
         radio.click()
 
         return radio.text
-
 
     def click_random_radio_btn(self):
         item_list = self.element_are_visible(self.locators.CHECK_LABEL)
@@ -131,8 +142,9 @@ class RadioButtonPage(BasePage):
 
         return item_selected.text
 
+
 class WebTablePage(BasePage):
-    
+
     locators = WebTablePageLocators()
 
     def click_button_add(self):
@@ -140,24 +152,33 @@ class WebTablePage(BasePage):
         self.element_is_clickable(self.locators.ADD_BUTTON).click()
 
     def filling_out_registration_fields(self):
-        
+
         person_info = next(generated_registration_person())
 
-        self.element_is_visible(self.locators.FIRSTNAME_INPUT).send_keys(person_info.first_name)
-        self.element_is_visible(self.locators.LASTNAME_INPUT).send_keys(person_info.last_name)
+        self.element_is_visible(self.locators.FIRSTNAME_INPUT).send_keys(
+            person_info.first_name
+        )
+        self.element_is_visible(self.locators.LASTNAME_INPUT).send_keys(
+            person_info.last_name
+        )
         self.element_is_visible(self.locators.EMAIL_INPUT).send_keys(person_info.email)
         self.element_is_visible(self.locators.AGE_INPUT).send_keys(str(person_info.age))
-        self.element_is_visible(self.locators.SALARY_INPUT).send_keys(str(person_info.salary))
-        self.element_is_visible(self.locators.DEPARTMENT_INPUT).send_keys(person_info.department)
+        self.element_is_visible(self.locators.SALARY_INPUT).send_keys(
+            str(person_info.salary)
+        )
+        self.element_is_visible(self.locators.DEPARTMENT_INPUT).send_keys(
+            person_info.department
+        )
 
         return (
             person_info.first_name,
             person_info.last_name,
             person_info.email,
-            person_info.age,person_info.salary,
-            person_info.department
+            person_info.age,
+            person_info.salary,
+            person_info.department,
         )
-    
+
     def submit_registration_form(self):
 
         self.element_is_clickable(self.locators.SUBMIT_BUTTON).click()
@@ -165,9 +186,7 @@ class WebTablePage(BasePage):
     def add_new_person_in_table(self):
 
         self.click_button_add()
-        
+
         person_data = self.filling_out_registration_fields()
         self.submit_registration_form()
         return person_data
-
-        
