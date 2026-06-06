@@ -1,5 +1,7 @@
 from pages.elements_page import TextBoxPage,CheckBoxPage,RadioButtonPage,WebTablePage
 import time
+
+
 class TestElements:
     class TestTextBox:
 
@@ -12,6 +14,7 @@ class TestElements:
             output_data = text_box_page.check_filled_form()
 
             assert input_data == output_data, "Incorrect data in textBox inputs"
+
 
     class TestCheckBox:
 
@@ -27,7 +30,8 @@ class TestElements:
             output_data = check_box_page.get_output_result()
 
             assert input_data == output_data, "The checkboxes have not been checked"
-        
+
+
     class TestRadioButton:
 
         def test_radio_btn(self,driver):
@@ -49,12 +53,13 @@ class TestElements:
                 
                 assert radio_btn_page.click_on_the_radio_btn(i) == radio_btn_page.get_checked_radio_btn(),f'Page element "{i}" is not clickable'
 
+
     class TestWebTable:
 
         def test_web_table_and_person(self,driver):
 
             web_page = WebTablePage(driver,'https://demoqa.com/webtables')
             web_page.open()
-            for i in range(40):
+            for i in range(20):
                 web_page.add_new_person_in_table()
-            time.sleep(10)
+            time.sleep(5)

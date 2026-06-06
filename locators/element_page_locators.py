@@ -22,6 +22,7 @@ class CheckBoxPageLocators:
     ARIA_CHECKED = (By.CSS_SELECTOR,"span[aria-checked='true']")
     OUTPUT_RESULT = (By.CSS_SELECTOR,"span[class='text-success']")
 
+
 class RadioButtonPageLocators:
     
     CHECK_LABEL = (By.CSS_SELECTOR,"label[class='form-check-label']")
@@ -30,6 +31,7 @@ class RadioButtonPageLocators:
     YES_RADIO_BTN = (By.CSS_SELECTOR,"label[for='yesRadio']")
     IMPRESSIVE_RADIO_BTN = (By.CSS_SELECTOR,"label[for='impressiveRadio']")
     NO_RADIO_BTN = (By.CSS_SELECTOR,"label[for='noRadio']")
+
 
 class WebTablePageLocators:
     ADD_BUTTON = (By.CSS_SELECTOR,"button[id='addNewRecordButton']")
