@@ -63,4 +63,8 @@ class TestElements:
             web_page = WebTablePage(driver, "https://demoqa.com/webtables")
             web_page.open()
             for i in range(20):
-                web_page.add_new_person_in_table()
+                new_person = web_page.add_new_person_in_table()
+
+                result_table = web_page.check_new_added_person()
+
+                assert new_person in result_table, "Person is not found in the table"

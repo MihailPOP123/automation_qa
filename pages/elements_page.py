@@ -170,14 +170,14 @@ class WebTablePage(BasePage):
             person_info.department
         )
 
-        return (
+        return [
             person_info.first_name,
             person_info.last_name,
+            str(person_info.age),
             person_info.email,
-            person_info.age,
-            person_info.salary,
+            str(person_info.salary),
             person_info.department,
-        )
+        ]
 
     def submit_registration_form(self):
 
@@ -190,3 +190,12 @@ class WebTablePage(BasePage):
         person_data = self.filling_out_registration_fields()
         self.submit_registration_form()
         return person_data
+
+    def check_new_added_person(self):
+
+        people_list = self.elements_are_present(self.locators.FULL_PEOPLE_LIST)
+        data = []
+        for item in people_list:
+            data.append(item.text.split())
+
+        return data
