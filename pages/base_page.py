@@ -47,3 +47,9 @@ class BasePage:
 
     def go_to_element(self, element):
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
+
+    def find_element_inside_parent(self, parent_element, child_locator, timeout=15):
+
+        return WebDriverWait(self.driver, timeout).until(
+            lambda d: parent_element.find_element(*child_locator)
+        )

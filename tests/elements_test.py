@@ -1,5 +1,6 @@
 from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablePage
 import time
+import random
 
 
 class TestElements:
@@ -60,11 +61,24 @@ class TestElements:
 
         def test_web_table_and_person(self, driver):
 
-            web_page = WebTablePage(driver, "https://demoqa.com/webtables")
-            web_page.open()
-            for i in range(20):
-                new_person = web_page.add_new_person_in_table()
+            web_table_page = WebTablePage(driver, "https://demoqa.com/webtables")
+            web_table_page.open()
 
-                result_table = web_page.check_new_added_person()
+            for i in range(5):
+                new_person = web_table_page.add_new_person_in_table()
+
+                result_table = web_table_page.check_new_added_person()
 
                 assert new_person in result_table, "Person is not found in the table"
+
+        def test_web_table_search_person(self, driver):
+            web_table_page = WebTablePage(driver, "https://demoqa.com/webtables")
+            web_table_page.open()
+            new_person = web_table_page.add_new_person_in_table()
+            key_word = new_person[random.randint(0, 5)]
+
+            web_table_page.search_some_person(key_word)
+            table_result = web_table_page.check_search_person()
+            print(f"{key_word} содержиться в {table_result}")
+
+            assert key_word in table_result, "drop"

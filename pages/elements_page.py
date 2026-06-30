@@ -199,3 +199,13 @@ class WebTablePage(BasePage):
             data.append(item.text.split())
 
         return data
+
+    def search_some_person(self, key_word):
+        self.element_is_clickable(self.locators.SEARCH_INPUT).send_keys(key_word)
+
+    def check_search_person(self):
+
+        delete_btn = self.element_is_clickable(self.locators.DELETE_BUTTON)
+        row = self.find_element_inside_parent(delete_btn, self.locators.ROW_PARENT)
+
+        return row.text.splitlines()
