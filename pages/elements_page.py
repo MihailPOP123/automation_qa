@@ -68,7 +68,7 @@ class CheckBoxPage(BasePage):
 
     def click_random_checkbox(self):
 
-        item_list = self.element_are_visible(self.locators.ITEM_LIST)
+        item_list = self.elements_are_visible(self.locators.ITEM_LIST)
 
         random.shuffle(item_list)
 
@@ -77,7 +77,7 @@ class CheckBoxPage(BasePage):
             item.click()
 
     def get_checked_checkboxes(self):
-        checked_list = self.element_are_present(self.locators.ARIA_CHECKED)
+        checked_list = self.elements_are_present(self.locators.ARIA_CHECKED)
         data = []
 
         for box in checked_list:
@@ -86,7 +86,7 @@ class CheckBoxPage(BasePage):
         return str(sorted(data)).replace(" ", "").replace(".doc", "").lower()
 
     def get_output_result(self):
-        result_list = self.element_are_present(self.locators.OUTPUT_RESULT)
+        result_list = self.elements_are_present(self.locators.OUTPUT_RESULT)
         result_data = []
 
         for item in result_list:
@@ -100,7 +100,7 @@ class RadioButtonPage(BasePage):
     locators = RadioButtonPageLocators()
 
     def click_all_radio_button(self):
-        item_list = self.element_are_visible(self.locators.CHECK_LABEL)
+        item_list = self.elements_are_visible(self.locators.CHECK_LABEL)
 
         data_click = []
         data_selected = []
@@ -128,7 +128,7 @@ class RadioButtonPage(BasePage):
         return radio.text
 
     def click_random_radio_btn(self):
-        item_list = self.element_are_visible(self.locators.CHECK_LABEL)
+        item_list = self.elements_are_visible(self.locators.CHECK_LABEL)
 
         random_item = random.choice(item_list)
 
