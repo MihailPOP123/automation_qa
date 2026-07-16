@@ -56,5 +56,3 @@ class WebTablePageLocators:
         "//table[@class='-striped -highlight table table-striped table-bordered table-hover']//tbody/tr",
     )
     SEARCH_INPUT = (By.CSS_SELECTOR, "input[id='searchBox']")
-    DELETE_BUTTON = (By.CSS_SELECTOR, "span[title='Delete']")
-    ROW_PARENT = (By.XPATH, "./ancestor::div[contains(@class, 'rt-tr-group')]")

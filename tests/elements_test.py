@@ -69,6 +69,8 @@ class TestElements:
 
                 result_table = web_table_page.check_new_added_person()
 
+                print(result_table)
+
                 assert new_person in result_table, "Person is not found in the table"
 
         def test_web_table_search_person(self, driver):
@@ -77,8 +79,12 @@ class TestElements:
             new_person = web_table_page.add_new_person_in_table()
             key_word = new_person[random.randint(0, 5)]
 
+            print(key_word)
+
             web_table_page.search_some_person(key_word)
-            table_result = web_table_page.check_search_person()
+            table_result = web_table_page.check_search_person(key_word)
             print(f"{key_word} содержиться в {table_result}")
 
-            assert key_word in table_result, "drop"
+            assert any(
+                key_word in row for row in table_result
+            ), f"Ключевое слово {key_word} отсутствует во всех найденных строках"

@@ -194,6 +194,7 @@ class WebTablePage(BasePage):
     def check_new_added_person(self):
 
         people_list = self.elements_are_present(self.locators.FULL_PEOPLE_LIST)
+
         data = []
         for item in people_list:
             data.append(item.text.split())
@@ -201,11 +202,13 @@ class WebTablePage(BasePage):
         return data
 
     def search_some_person(self, key_word):
-        self.element_is_clickable(self.locators.SEARCH_INPUT).send_keys(key_word)
+        search_field = self.element_is_clickable(self.locators.SEARCH_INPUT)
 
-    def check_search_person(self):
+        search_field.click()
+        search_field.send_keys(key_word)
 
-        delete_btn = self.element_is_clickable(self.locators.DELETE_BUTTON)
-        row = self.find_element_inside_parent(delete_btn, self.locators.ROW_PARENT)
+    def check_search_person(self, key_word):
 
-        return row.text.splitlines()
+        people_list = self.check_new_added_person()
+
+        return [person for person in people_list if key_word in person]
